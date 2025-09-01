@@ -1,26 +1,20 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Button from "../../Components/CSV/Button";
 
 const API = "https://fakestoreapi.com/products";
-
 const Home = () => {
-  const isAuth = localStorage.getItem("authToken");
+  // const isAuth = localStorage.getItem("authToken");
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  // useEffect(() => {
-  //   if (!isAuth) {
-  //     navigate("/");
-  //   }
-  // }, [isAuth]);
-
   useEffect(() => {
     const user = localStorage.getItem("user");
     if (!user) {
-      navigate("/login"); // agar user hi nahi mila
+      navigate("/login");
     }
   }, [navigate]);
 
@@ -175,6 +169,10 @@ const Home = () => {
               </ul>
             </nav>
           </div>
+<div className="justify-content-center align-items-center d-flex">
+<Button data={data} />
+
+</div>
         </div>
       </div>
     </div>

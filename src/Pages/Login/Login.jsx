@@ -16,7 +16,6 @@ const Login = () => {
       savedUser.email === email &&
       savedUser.password === password
     ) {
-      // ✅ auth token set karo
       localStorage.setItem("authToken", "sample_token");
 
       alert("Login successful!");
