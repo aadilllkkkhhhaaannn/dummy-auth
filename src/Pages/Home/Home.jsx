@@ -11,11 +11,18 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
+  // useEffect(() => {
+  //   if (!isAuth) {
+  //     navigate("/");
+  //   }
+  // }, [isAuth]);
+
   useEffect(() => {
-    if (!isAuth) {
-      navigate("/login");
+    const user = localStorage.getItem("user");
+    if (!user) {
+      navigate("/login"); // agar user hi nahi mila
     }
-  }, [isAuth]);
+  }, [navigate]);
 
   // fetch API
   const fetchUsers = async (url) => {
@@ -41,7 +48,7 @@ const Home = () => {
       item.title.toLowerCase().includes(query) ||
       item.description.toLowerCase().includes(query) ||
       item.category.toLowerCase().includes(query) ||
-      item.price.toLowerCase().includes(query)
+      item.price.toString().toLowerCase().includes(query)
     );
   });
 
@@ -58,7 +65,7 @@ const Home = () => {
           {/* Header with title + search */}
           <div className="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
             <h4 className="mb-0">Products</h4>
-            <div className="input-group" style={{ maxWidth: "300px"}}>
+            <div className="input-group" style={{ maxWidth: "300px" }}>
               <input
                 onChange={(e) => setQuery(e.target.value.toLowerCase())}
                 type="text"

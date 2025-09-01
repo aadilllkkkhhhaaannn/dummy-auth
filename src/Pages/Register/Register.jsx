@@ -12,17 +12,20 @@ const Register = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
+
+    if (!email.endsWith("@gmail.com")) {
+      alert("❌ Only @gmail.com emails are allowed!");
+      return;
+    }
+
     const user = { name, email, phone, password };
     localStorage.setItem("user", JSON.stringify(user));
-    alert("Reigisterion successfully!");
+
+    localStorage.setItem("authToken", "sample_token");
+
+    alert("Registration successful!");
     navigate("/");
   };
-
-  const isButtonDisabled = !(
-    email.includes("@") &&
-    email.includes(".") &&
-    password.length >= 5
-  );
 
   return (
     <>
@@ -58,7 +61,7 @@ const Register = () => {
             />
 
             <input
-              type="password"
+              type="number"
               required
               placeholder="Enter password"
               value={password}
@@ -68,18 +71,16 @@ const Register = () => {
             <button
               className="btn btn-sm w-100 btn-dark rounded-0 batan login-input"
               type="submit"
-              disabled={isButtonDisabled}
-              style={{
-                backgroundColor: isButtonDisabled ? "rgb(19, 21, 21)" : "black",
-                color: "white",
-              }}
             >
               Register{" "}
             </button>
           </form>
         </div>
         <p className={styles.center}>
-          Already have an account?<Link className={styles.color} to={"/login"}>Sign in</Link>
+          Already have an account?
+          <Link className={styles.color} to={"/login"}>
+            Sign in
+          </Link>
         </p>
       </div>
     </>

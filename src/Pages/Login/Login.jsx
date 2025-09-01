@@ -6,29 +6,25 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  
+
   const handleLogin = (e) => {
     e.preventDefault();
-    const saved = JSON.parse(localStorage.getItem("user"));
-    if (!saved) {
-      alert("No user found! Please register first.");
-      return;
-    }
+    const savedUser = JSON.parse(localStorage.getItem("user"));
 
-    if (saved.email === email && saved.password === password) {
-      localStorage.setItem("authToken", "fake-jwt-token");
-      alert("Login Successful!");
+    if (
+      savedUser &&
+      savedUser.email === email &&
+      savedUser.password === password
+    ) {
+      // ✅ auth token set karo
+      localStorage.setItem("authToken", "sample_token");
+
+      alert("Login successful!");
       navigate("/");
     } else {
-      alert("Invalid Credentials!");
+      alert("Invalid credentials!");
     }
   };
-
-  const isButtonDisabled = !(
-    email.includes("@") &&
-    email.includes(".") &&
-    password.length >= 5
-  );
 
   return (
     <>
@@ -46,7 +42,7 @@ const Login = () => {
             />
 
             <input
-              type="password"
+              type="number"
               required
               placeholder="Enter password"
               className="form-control my-2 rounded-0 login-input"
@@ -55,12 +51,7 @@ const Login = () => {
             />
 
             <button
-              disabled={isButtonDisabled}
               type="submit"
-              style={{
-                backgroundColor: isButtonDisabled ? "rgb(19, 21, 21)" : "black",
-                color: "white",
-              }}
               className="btn btn-sm w-100 btn-dark rounded-0 batan login-input"
             >
               Login
