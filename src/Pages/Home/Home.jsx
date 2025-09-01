@@ -41,7 +41,7 @@ const Home = () => {
       item.title.toLowerCase().includes(query) ||
       item.description.toLowerCase().includes(query) ||
       item.category.toLowerCase().includes(query) ||
-      item.price.toLowerCase().includes(query)
+      item.price.toString().toLowerCase().includes(query)
     );
   });
 
