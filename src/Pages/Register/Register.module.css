@@ -1,0 +1,9 @@
+.center {
+  display: flex;
+  justify-content: end;
+}
+
+.color{
+    text-decoration: none;
+    font-weight: 500;
+}

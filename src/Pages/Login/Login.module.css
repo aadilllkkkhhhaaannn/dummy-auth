@@ -1,0 +1,14 @@
+.center {
+  display: flex;
+  justify-content: end;
+}
+
+.color {
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.colors {
+  text-decoration: none;
+  font-weight: 500;
+}
